@@ -1,0 +1,47 @@
+{
+  "name": "chat-fax",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint './**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "yarn lint --fix",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "format": "prettier --check ."
+  },
+  "dependencies": {
+    "@expo-google-fonts/poppins": "^0.2.3",
+    "@types/react": "~18.2.14",
+    "expo": "~49.0.10",
+    "expo-splash-screen": "~0.20.5",
+    "expo-status-bar": "~1.6.0",
+    "nativewind": "^2.0.11",
+    "react": "18.2.0",
+    "react-native": "0.72.4",
+    "typescript": "^5.1.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.49.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-nativewind": "^0.2.3",
+    "tailwindcss": "3.3.2"
+  },
+  "private": true
+}
