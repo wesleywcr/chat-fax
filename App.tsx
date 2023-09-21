@@ -1,14 +1,24 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import {
+  Poppins_300Light,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+  Poppins_800ExtraBold,
+  useFonts,
+} from '@expo-google-fonts/poppins';
+import { ActivityIndicator } from 'react-native';
 
-import { Button } from './src/components/Button';
+import { Home } from './src/screens/Home';
 
 export default function App() {
-  return (
-    <View className="flex-1 items-center justify-center bg-red-950">
-      <TouchableOpacity className="h-14 w-full items-center  justify-center bg-slate-950">
-        <Text className="font-bold text-white">Enviar</Text>
-      </TouchableOpacity>
-      <Button />
-    </View>
-  );
+  const [fontsLoaded] = useFonts({
+    Poppins_300Light,
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+    Poppins_800ExtraBold,
+  });
+  return <>{fontsLoaded ? <Home /> : <ActivityIndicator />}</>;
 }
