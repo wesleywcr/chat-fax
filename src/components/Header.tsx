@@ -14,7 +14,12 @@ export function Header() {
         </Text>
       </View>
       <View className="flex-row">
-        <Feather name="phone" size={24} color="#0050EF" />
+        <Feather
+          name="phone"
+          size={24}
+          color="#0050EF"
+          style={{ marginRight: 16 }}
+        />
         <Feather name="video" size={24} color="#0050EF" />
       </View>
     </View>
