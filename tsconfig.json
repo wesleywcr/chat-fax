@@ -28,32 +28,38 @@
     "jsx": "react-native",
     "noEmit": true,
     "isolatedModules": true,
-    // "baseUrl": "./",
-    // "paths": {
-    //   "@assets/*": [
-    //     "./src/assets/*"
-    //   ],
-    //   "@components/*": [
-    //     "./src/components/*"
-    //   ],
-    //   "@global/*": [
-    //     "./src/global/*"
-    //   ],
-    //   "@hooks/*": [
-    //     "./src/hooks/*"
-    //   ],
-    //   "@routes/*": [
-    //     "./src/routes/*"
-    //   ],
-    //   "@screens/*": [
-    //     "src/screens/*"
-    //   ],
-    //   "@services/*": [
-    //     "./src/services/*"
-    //   ],
-    //   "@styles/*": [
-    //     "src/styles/*"
-    //   ],
-    // }
+    "baseUrl": "./src",
+    "paths": {
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@global/*": [
+        "./src/global/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@routes/*": [
+        "./src/routes/*"
+      ],
+      "@screens/*": [
+        "src/screens/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ]
+    }
   },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
 }
