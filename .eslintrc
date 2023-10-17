@@ -75,6 +75,8 @@
         "unused-imports/no-unused-imports": "error",
         "react/jsx-no-useless-fragment": "off",
         "import/no-extraneous-dependencies": "off",
+        "react/no-unstable-nested-components": "off",
+        "consistent-return": "off",
         "unused-imports/no-unused-vars": [
           "error",
           {
