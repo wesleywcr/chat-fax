@@ -2,7 +2,11 @@ import { Image, Text, View } from 'react-native';
 
 import { Status } from './Status';
 
-export function Received() {
+type IMessageProps = {
+  message: string;
+};
+
+export function Received({ message }: IMessageProps) {
   return (
     <View className="mt-8 w-auto flex-col ">
       <View className=" flex-row items-center">
@@ -12,12 +16,9 @@ export function Received() {
             uri: 'https://img.freepik.com/fotos-premium/pessoas-mulheres-negocios-e-conceito-de-retrato-rosto-de-jovem-sorridente-feliz_380164-121867.jpg',
           }}
         />
-        <View
-          className="h-auto w-52 flex-row items-center
-    justify-start rounded-t-xl rounded-br-xl  bg-stone-900"
-        >
+        <View className="h-auto w-52 flex-row items-center justify-start rounded-t-xl rounded-br-xl  bg-stone-900">
           <Text className="w-auto p-4 text-justify font-Poppins_400Regular text-sm text-white">
-            Olá como está?
+            {message}
           </Text>
         </View>
       </View>
