@@ -77,6 +77,8 @@
         "import/no-extraneous-dependencies": "off",
         "react/no-unstable-nested-components": "off",
         "consistent-return": "off",
+        "no-useless-catch": "off",
+        "react/jsx-no-constructed-context-values": "off",
         "unused-imports/no-unused-vars": [
           "error",
           {
