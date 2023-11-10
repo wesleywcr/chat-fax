@@ -7,6 +7,7 @@ type IMessageProps = {
 };
 
 export function Received({ message }: IMessageProps) {
+  // const {colorSchema} = useColorScheme();
   return (
     <View className="mt-8 w-auto flex-col ">
       <View className=" flex-row items-center">
