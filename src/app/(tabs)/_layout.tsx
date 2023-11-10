@@ -1,47 +1,44 @@
-import {
-  Poppins_300Light,
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-  Poppins_700Bold,
-  Poppins_800ExtraBold,
-  useFonts,
-} from '@expo-google-fonts/poppins';
-import { SplashScreen, Tabs } from 'expo-router';
-import { useEffect } from 'react';
-
-SplashScreen.preventAutoHideAsync();
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
+import { Feather } from '@expo/vector-icons';
+import Loading from 'components/Loading';
+import { Redirect, Tabs } from 'expo-router';
+import { useAuth } from 'hooks/useAuth';
 
 export default function TabRoutesLayout() {
-  const [fontsLoaded, fontError] = useFonts({
-    Poppins_300Light,
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_600SemiBold,
-    Poppins_700Bold,
-    Poppins_800ExtraBold,
-  });
-  useEffect(() => {
-    if (fontsLoaded || fontError) {
-      // Hide the splash screen after the fonts have loaded (or an error was returned) and the UI is ready.
-      SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded, fontError]);
+  const { user, isLoadingUserStorageData } = useAuth();
 
-  // Prevent rendering until the font has loaded or an error was returned
-  if (!fontsLoaded && !fontError) {
-    return null;
+  if (isLoadingUserStorageData) {
+    return <Loading />;
+  }
+  if (!user.id && user.id === undefined) {
+    return <Redirect href="/(auth)/login" />;
   }
 
-  if (!fontsLoaded) {
-    return null;
-  }
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: { backgroundColor: '#000' },
+        tabBarActiveTintColor: '#fff',
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'home',
+          title: 'Home',
+          tabBarIcon: ({ size, color }) => (
+            <Feather name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'profile',
+          tabBarIcon: ({ size, color }) => (
+            <Feather name="user" size={size} color={color} />
+          ),
         }}
       />
     </Tabs>
