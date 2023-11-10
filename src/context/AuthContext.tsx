@@ -1,13 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import type { ISignIn } from 'dto/authDTO';
 import type { UserDTO } from 'dto/userDTO';
 import { pb } from 'lib/pocketbase';
-import type { ISignIn } from 'models/auth';
 import type { ReactNode } from 'react';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import {
+  storageAuthTokenGet,
   storageAuthTokenRemove,
   storageAuthTokenSave,
 } from 'storage/storageToken';
-import { storageUserRemove, storageUserSave } from 'storage/storageUser';
+import {
+  storageUserGet,
+  storageUserRemove,
+  storageUserSave,
+} from 'storage/storageUser';
 
 export type AuthContextProps = {
   user: UserDTO;
@@ -27,6 +33,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState({} as UserDTO);
   const [isLoadingUserStorageData, setIsLoadingUserStorageData] =
     useState(true);
+  // const isLogged = pb.authStore.isValid;
 
   async function storageUserAndTokenSave(userData: UserDTO, token: string) {
     try {
@@ -71,6 +78,27 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       setIsLoadingUserStorageData(false);
     }
   }
+  async function loadUserData() {
+    try {
+      setIsLoadingUserStorageData(true);
+      const userLogged = await storageUserGet();
+      const { token } = await storageAuthTokenGet();
+
+      if (token && userLogged) {
+        setIsLoadingUserStorageData(true);
+        setUser(userLogged);
+
+        await storageUserAndTokenSave(userLogged, token);
+      }
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsLoadingUserStorageData(false);
+    }
+  }
+  useEffect(() => {
+    loadUserData();
+  }, []);
 
   return (
     <AuthContext.Provider
