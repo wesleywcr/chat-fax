@@ -1,10 +1,14 @@
 import { Feather } from '@expo/vector-icons';
-import { Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 export function Header() {
   return (
     <View className="h-24 w-full  flex-row items-center justify-between px-4">
-      <Feather name="arrow-left" size={24} color="#fff" />
+      <TouchableOpacity onPress={() => router.replace('/')}>
+        <Feather name="arrow-left" size={24} color="#fff" />
+      </TouchableOpacity>
+
       <View className="flex-col items-center">
         <Text className="font-Poppins_600SemiBold text-2xl text-white">
           Salina Gomez
