@@ -81,7 +81,7 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.chatfax"
+    namespace 'com.chatapp.fax'
     defaultConfig {
         applicationId 'com.chatapp.fax'
         minSdkVersion rootProject.ext.minSdkVersion
