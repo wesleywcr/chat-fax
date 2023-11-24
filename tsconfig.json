@@ -1,66 +1,45 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "lib": [
-      "es6"
-    ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
     "strict": true,
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowUnreachableCode": false,
-    "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": false,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react-native",
-    "noEmit": true,
-    "isolatedModules": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
+      "@dto/*": [
+        "src/dto/*"
+      ],
       "@assets/*": [
         "./src/assets/*"
       ],
       "@components/*": [
         "./src/components/*"
       ],
-      "@global/*": [
-        "./src/global/*"
-      ],
-      "@hooks/*": [
-        "./src/hooks/*"
-      ],
-      "@routes/*": [
-        "./src/routes/*"
-      ],
       "@screens/*": [
-        "src/screens/*"
+        "./src/screens/*"
+      ],
+      "@storage/*": [
+        "./src/storage/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
       ],
       "@services/*": [
         "./src/services/*"
       ],
-      "@styles/*": [
-        "src/styles/*"
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@schemas/*": [
+        "./src/schemas/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
       ]
-    }
+    },
+    "types": [
+      "nativewind/types"
+    ],
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "src/app/index.js"
-  ]
 }

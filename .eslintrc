@@ -79,6 +79,7 @@
         "consistent-return": "off",
         "no-useless-catch": "off",
         "react/jsx-no-constructed-context-values": "off",
+        "@typescript-eslint/no-use-before-define": "off",
         "unused-imports/no-unused-vars": [
           "error",
           {

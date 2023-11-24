@@ -1,7 +1,6 @@
 {
   "name": "chat-fax",
   "version": "1.0.0",
-  "main": "expo-router/entry",
   "scripts": {
     "lint": "eslint './**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "yarn lint --fix",
@@ -14,32 +13,34 @@
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.2.3",
     "@hookform/resolvers": "^3.3.2",
-    "@react-native-async-storage/async-storage": "^1.19.3",
+    "@react-native-async-storage/async-storage": "1.17.11",
     "@tanstack/react-query": "^5.4.3",
-    "@types/react": "~18.2.14",
-    "expo": "~49.0.10",
-    "expo-constants": "~14.4.2",
-    "expo-linking": "~5.0.2",
+    "@types/react": "~18.0.27",
+    "expo": "~48.0.21",
+    "expo-constants": "~14.2.1",
+    "expo-linking": "~4.0.1",
     "expo-router": "^2.0.0",
-    "expo-splash-screen": "~0.20.5",
-    "expo-status-bar": "~1.6.0",
+    "expo-splash-screen": "~0.18.2",
+    "expo-status-bar": "~1.4.4",
     "lodash": "^4.17.21",
     "nativewind": "^2.0.11",
     "pocketbase": "^0.19.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.47.0",
-    "react-native": "0.72.4",
-    "react-native-gesture-handler": "~2.12.0",
-    "react-native-safe-area-context": "4.6.3",
-    "react-native-screens": "~3.22.0",
+    "react-native": "0.71.14",
+    "react-native-gesture-handler": "~2.9.0",
+    "react-native-reanimated": "~2.14.4",
+    "react-native-safe-area-context": "4.5.0",
+    "react-native-screens": "~3.20.0",
     "react-native-sse": "^1.2.0",
-    "react-native-web": "~0.19.6",
-    "typescript": "^5.1.3",
+    "react-native-web": "~0.18.10",
+    "typescript": "^4.9.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@types/lodash": "^4.14.199",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
@@ -60,6 +61,10 @@
     "prettier": "^3.0.3",
     "prettier-plugin-nativewind": "^0.2.3",
     "tailwindcss": "3.3.2"
+  },
+  "resolutions": {
+    "metro": "0.76.0",
+    "metro-resolver": "0.76.0"
   },
   "private": true
 }

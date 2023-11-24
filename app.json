@@ -30,10 +30,10 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "experiments": {
-      "typedRoutes": true,
-      "tsconfigPaths": true
-    },
+    // "experiments": {
+    //   "typedRoutes": true,
+    //   "tsconfigPaths": true
+    // },
     "plugins": [
       "expo-router"
     ]
