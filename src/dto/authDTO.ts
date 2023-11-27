@@ -10,3 +10,10 @@ export type ISignUp = {
   avatar?: string;
   username?: string;
 };
+export type IProfile = {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  username: string;
+};
