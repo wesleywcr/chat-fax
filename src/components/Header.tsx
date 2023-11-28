@@ -2,7 +2,12 @@ import { Feather } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-export function Header() {
+type IHeaderProps = {
+  name: string;
+  status: string;
+};
+
+export function Header({ name, status }: IHeaderProps) {
   return (
     <View className="h-24 w-full  flex-row items-center justify-between px-4">
       <TouchableOpacity onPress={() => router.replace('/')}>
@@ -11,10 +16,10 @@ export function Header() {
 
       <View className="flex-col items-center">
         <Text className="font-Poppins_600SemiBold text-2xl text-white">
-          Salina Gomez
+          {name}
         </Text>
         <Text className="font-Poppins_500Medium text-xs text-white">
-          online
+          {status}
         </Text>
       </View>
       <View className="flex-row">
