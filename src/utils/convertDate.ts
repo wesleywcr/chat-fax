@@ -1,3 +1,12 @@
+export function convertDateFormatted(date: string) {
+  const newDate = new Date(date);
+
+  const day = String(newDate.getDate()).padStart(2, '0');
+  const month = String(newDate.getMonth() + 1).padStart(2, '0');
+  const year = newDate.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
 export function convertDateToHours(date: string) {
   const newDate = new Date(date);
   let hours = newDate.getHours();
@@ -12,6 +21,7 @@ export function convertDateToHours(date: string) {
 
   return `${hoursFormatted}:${minutesFormatted} ${period}`;
 }
+
 export function convertDateToDay(date: string) {
   const months = [
     'January',
