@@ -1,4 +1,11 @@
-export function convertDateFormatted(date: string) {
+export function convertDateFormatted(newDate: Date) {
+  const day = String(newDate.getDate()).padStart(2, '0');
+  const month = String(newDate.getMonth() + 1).padStart(2, '0');
+  const year = newDate.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
+export function convertDateStringFormatted(date: string) {
   const newDate = new Date(date);
 
   const day = String(newDate.getDate()).padStart(2, '0');
@@ -44,4 +51,11 @@ export function convertDateToDay(date: string) {
   const year = newDate.getFullYear();
 
   return `${months[month]} ${day}, ${year}`;
+}
+
+export function convertDateFormattedToDate(date: string) {
+  const [day, month, year] = date.split('/');
+
+  const newDate = new Date(`${year}-${month}-${day}`);
+  return newDate.toISOString();
 }
