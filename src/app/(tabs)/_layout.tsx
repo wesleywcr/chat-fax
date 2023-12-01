@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
+import Loading from '@components/Loading';
 import { Feather } from '@expo/vector-icons';
-import Loading from 'components/Loading';
+import { useAuth } from '@hooks/useAuth';
 import { Redirect, Tabs } from 'expo-router';
-import { useAuth } from 'hooks/useAuth';
 
 export default function TabRoutesLayout() {
   const { user, isLoadingUserStorageData } = useAuth();
@@ -35,7 +35,7 @@ export default function TabRoutesLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'profile',
+          title: 'Profile',
           tabBarIcon: ({ size, color }) => (
             <Feather name="user" size={size} color={color} />
           ),
