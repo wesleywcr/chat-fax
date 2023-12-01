@@ -12,7 +12,7 @@ export function SearchBar() {
         className="h-12 w-full bg-transparent pl-1
         font-Poppins_500Medium text-white"
         placeholderTextColor="#f2f2f2"
-        placeholder="Pesquisar"
+        placeholder="Search"
       />
     </View>
   );

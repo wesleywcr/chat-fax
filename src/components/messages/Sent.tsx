@@ -5,9 +5,10 @@ import { Status } from './Status';
 type IMessageProps = {
   message: string;
   hours: string;
+  status: 'sent' | 'viewed';
 };
 
-export function Sent({ message, hours }: IMessageProps) {
+export function Sent({ message, hours, status }: IMessageProps) {
   return (
     <View className="mt-8 w-auto flex-col ">
       <View
@@ -22,7 +23,7 @@ export function Sent({ message, hours }: IMessageProps) {
         </Text>
       </View>
       <View className="mt-1 items-end justify-end pr-2">
-        <Status hours={hours} statusVisualization="viewed" />
+        <Status hours={hours} statusVisualization={status} />
       </View>
     </View>
   );
