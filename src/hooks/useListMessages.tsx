@@ -1,7 +1,6 @@
 /* eslint-disable array-callback-return */
-/* eslint-disable @typescript-eslint/no-use-before-define */
+import { pb } from '@lib/pocketbase';
 import { useQuery } from '@tanstack/react-query';
-import { pb } from 'lib/pocketbase';
 import groupBy from 'lodash/groupBy';
 
 type IDataMessages = {
