@@ -7,13 +7,14 @@ export type ISignUp = {
   email: string;
   password: string;
   passwordConfirm: string;
+  dateOfBirth: string;
+  phone: string;
   avatar?: string;
-  username?: string;
+  username: string;
 };
 export type IProfile = {
   name: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
   username: string;
+  dateOfBirth: string;
+  phone: string;
 };

@@ -9,6 +9,8 @@ export type UserDTO = {
   created: string;
   updated: string;
   name: string;
+  dateOfBirth: string;
+  phone: string;
   avatar?: string;
 };
 export type IListContacts = {
