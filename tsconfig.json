@@ -1,6 +1,7 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "module": "esnext",
     "strict": true,
     "baseUrl": "./",
     "paths": {
@@ -14,7 +15,7 @@
         "./src/components/*"
       ],
       "@screens/*": [
-        "./src/screens/*"
+        "./src/app/*"
       ],
       "@storage/*": [
         "./src/storage/*"
@@ -36,7 +37,10 @@
       ],
       "@lib/*": [
         "./src/lib/*"
-      ]
+      ],
+      "@__tests__/*": [
+        "./__tests__/*"
+      ],
     },
     "types": [
       "nativewind/types",
