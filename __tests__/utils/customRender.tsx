@@ -2,9 +2,9 @@ import { AuthContextProvider } from '@contexts/AuthContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { RenderOptions } from '@testing-library/react-native';
 import { render } from '@testing-library/react-native';
-import type { ReactElement } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
-function Providers({ children }: { children: React.ReactNode }) {
+function Providers({ children }: { children: ReactNode }) {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
@@ -12,6 +12,7 @@ function Providers({ children }: { children: React.ReactNode }) {
     </QueryClientProvider>
   );
 }
+
 const customRender = (
   ui: ReactElement,
   options?: Omit<RenderOptions, 'wrapper'>,
