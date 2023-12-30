@@ -35,7 +35,7 @@ export default function useSignUp() {
         dateOfBirth: convertDateFormattedToDate(form.dateOfBirth),
         name: form.name,
       };
-      console.log('data', data);
+
       await pb.collection('users').create(data);
       const formData = {
         email: form.email,
@@ -59,6 +59,16 @@ export default function useSignUp() {
     setShow(false);
     setValue('dateOfBirth', currentDate);
   };
+  function formatInputDate(inputDate: string) {
+    const cleanedInput = inputDate.replace(/\D/g, '');
+
+    const formatted = cleanedInput.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
+    setValue('dateOfBirth', formatted);
+    return formatted;
+  }
+  function goBack() {
+    router.push('/login');
+  }
 
   function showMode() {
     setShow(true);
@@ -71,5 +81,8 @@ export default function useSignUp() {
     show,
     showMode,
     handleSelectedDate,
+    formatInputDate,
+    setValue,
+    goBack,
   };
 }
