@@ -1,10 +1,11 @@
 import { Button } from '@components/Button';
 import { Input } from '@components/Input';
 import { TextStyled } from '@components/TextStyled';
+import { Feather } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { formattedPhone } from '@utils/formattedPhone';
 import { Controller } from 'react-hook-form';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import useSignUp from './hook/useSignUp';
 
@@ -17,16 +18,28 @@ export default function SignUp() {
     show,
     showMode,
     handleSelectedDate,
+    formatInputDate,
+    goBack,
   } = useSignUp();
+
   return (
     <ScrollView className="flex-1  bg-stone-900">
-      <View className="my-10  flex-col items-center justify-center  p-4">
-        <TextStyled>Register</TextStyled>
+      <TouchableOpacity
+        className="mb-6 mt-11 flex-row  items-start justify-start pl-4"
+        onPress={() => goBack()}
+      >
+        <Feather name="arrow-left" size={24} color="white" />
+      </TouchableOpacity>
+      <View className="flex-col items-center justify-center  p-4">
+        <View className=" w-full flex-col items-start justify-start ">
+          <TextStyled>Create Account</TextStyled>
+        </View>
         <Controller
           control={control}
           name="name"
           render={({ field: { onChange, value } }) => (
             <Input
+              testID="name-input"
               placeholder="Name"
               onChangeText={onChange}
               value={value}
@@ -39,6 +52,7 @@ export default function SignUp() {
           name="email"
           render={({ field: { onChange, value } }) => (
             <Input
+              testID="email-input"
               placeholder="E-mail"
               keyboardType="email-address"
               onChangeText={onChange}
@@ -52,6 +66,7 @@ export default function SignUp() {
           name="username"
           render={({ field: { onChange, value } }) => (
             <Input
+              testID="username-input"
               placeholder="Username"
               onChangeText={onChange}
               value={value}
@@ -64,6 +79,7 @@ export default function SignUp() {
           name="phone"
           render={({ field: { onChange, value } }) => (
             <Input
+              testID="phone-input"
               placeholder="Phone"
               value={value}
               maxLength={15}
@@ -78,12 +94,18 @@ export default function SignUp() {
           name="dateOfBirth"
           render={({ field: { onChange, value } }) => (
             <Input
+              testID="dateOfBirth-input"
               type="date"
               onPressIcon={() => showMode()}
               placeholder="Date of birth"
-              onChangeText={onChange}
+              onChangeText={(text) => {
+                const formattedDate = formatInputDate(text);
+                onChange(formattedDate);
+              }}
+              keyboardType="numeric"
+              maxLength={10}
               value={value}
-              errorMessage={errors.name?.message}
+              errorMessage={errors.dateOfBirth?.message}
             />
           )}
         />
@@ -101,6 +123,7 @@ export default function SignUp() {
           name="password"
           render={({ field: { onChange, value } }) => (
             <Input
+              testID="password-input"
               placeholder="Password"
               onChangeText={onChange}
               value={value}
@@ -114,6 +137,7 @@ export default function SignUp() {
           name="passwordConfirm"
           render={({ field: { onChange, value } }) => (
             <Input
+              testID="passwordConfirm-input"
               placeholder="Confirm password"
               onChangeText={onChange}
               value={value}
@@ -124,10 +148,19 @@ export default function SignUp() {
         />
 
         <Button
-          className=" mt-10"
-          title="Register"
+          testID="submit-button"
+          className="mt-10"
+          title="SIGN UP"
           onPress={handleSubmit(signUp)}
         />
+        <Text className="mt-10 font-Poppins_400Regular text-base text-white ">
+          Already have a account?
+        </Text>
+        <TouchableOpacity className="mb-10 " onPress={() => goBack()}>
+          <Text className="font-Poppins_600SemiBold text-base text-blue-600">
+            Sign in
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
