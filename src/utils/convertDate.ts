@@ -2,7 +2,7 @@ export function convertDateFormatted(newDate: Date) {
   const day = String(newDate.getDate()).padStart(2, '0');
   const month = String(newDate.getMonth() + 1).padStart(2, '0');
   const year = newDate.getFullYear();
-  return `${day}/${month}/${year}`;
+  return `${month}/${day}/${year}`;
 }
 
 export function convertDateStringFormatted(date: string) {
@@ -11,7 +11,7 @@ export function convertDateStringFormatted(date: string) {
   const day = String(newDate.getDate()).padStart(2, '0');
   const month = String(newDate.getMonth() + 1).padStart(2, '0');
   const year = newDate.getFullYear();
-  return `${day}/${month}/${year}`;
+  return `${month}/${day}/${year}`;
 }
 
 export function convertDateToHours(date: string) {
@@ -46,7 +46,7 @@ export function convertDateToDay(date: string) {
   ];
 
   const newDate = new Date(date);
-  const day = newDate.getDay();
+  const day = newDate.getDate();
   const month = newDate.getMonth();
   const year = newDate.getFullYear();
 
