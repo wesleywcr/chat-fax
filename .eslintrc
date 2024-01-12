@@ -85,6 +85,12 @@
         "no-useless-catch": "off",
         "react/jsx-no-constructed-context-values": "off",
         "@typescript-eslint/no-use-before-define": "off",
+        "no-console": "off",
+        "no-await-in-loop": "off",
+        "no-plusplus": "off",
+        "@typescript-eslint/no-unused-expressions ": "off",
+        "no-param-reassign ": "off",
+        "array-callback-return": "off",
         "unused-imports/no-unused-vars": [
           "error",
           {
