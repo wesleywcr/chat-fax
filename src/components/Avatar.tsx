@@ -18,7 +18,7 @@ export function Avatar({ avatar }: AvatarProps) {
         />
       ) : (
         <View
-          className="mr-3 h-12 w-12 items-center justify-center
+          className="h-12 w-12 items-center justify-center
          rounded-full bg-blue-950"
         >
           <Feather name="user" size={26} color={colors.white} />
