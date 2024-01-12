@@ -14,7 +14,7 @@ export function Button({ title, isLoading, ...rest }: ButtonProps) {
         {...rest}
       >
         {isLoading ? (
-          <ActivityIndicator color="#000" />
+          <ActivityIndicator testID="activity-indicator" color="#000" />
         ) : (
           <Text className="font-bold text-white">{title}</Text>
         )}

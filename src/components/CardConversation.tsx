@@ -24,14 +24,14 @@ export function CardConversation({
     >
       <View className="flex-row justify-start ">
         <Avatar avatar={avatar_url} />
-        <View className="flex-col items-center justify-center pl-3">
+        <View className="ml-3 flex-col items-start justify-center pl-3">
           <Text
             className="text-left font-Poppins_600SemiBold
           text-base text-white"
           >
             {name}
           </Text>
-          <Text className="font-Poppins_500Medium text-xs text-white">
+          <Text className="text-left font-Poppins_500Medium text-xs text-white">
             {lastMessage}
           </Text>
         </View>
