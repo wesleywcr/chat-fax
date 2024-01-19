@@ -3,15 +3,28 @@ import { ScreenHeader } from '@components/ScreenHeader';
 import { TextStyled } from '@components/TextStyled';
 import { Feather, FontAwesome5 } from '@expo/vector-icons';
 import { useAuth } from '@hooks/useAuth';
+import { pb } from '@lib/pocketbase';
 import { FILE_URL } from '@storage/storageVariables';
 import { router } from 'expo-router';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Profile() {
   const { signOut, user } = useAuth();
 
   function handleOpenUpdateProfile() {
     router.push(`updateProfile`);
+  }
+
+  async function handleDeleteAccount() {
+    Alert.alert('Do you want to delete your account?', '', [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'Yes',
+        onPress: async () => pb.collection('users').delete(user.id),
+      },
+    ]);
   }
 
   return (
@@ -68,7 +81,7 @@ export default function Profile() {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={signOut}
+              onPress={() => handleDeleteAccount()}
               className="my-4 flex-row items-center"
             >
               <View
