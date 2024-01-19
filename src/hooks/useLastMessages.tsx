@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import type { ILastMessages } from '@dto/messagesDTO';
 import { pb } from '@lib/pocketbase';
 import { useQuery } from '@tanstack/react-query';
@@ -10,16 +9,15 @@ export default function useLastMessages() {
 
   return useQuery<ILastMessages[] | undefined>({
     queryKey: ['last-messages', user?.id],
-    queryFn: () => fetchLastDataMessages(user?.id as string),
+    queryFn: () => fetchLastDataMessages(),
   });
 }
 
-async function fetchLastDataMessages(id: string) {
+async function fetchLastDataMessages() {
   try {
-    const response = await pb.collection('messages').getFullList({
+    const response = await pb.collection('messages').getFullList(3, {
       sort: '-created',
-      expand: 'from',
-      filter: `to='${id}'`,
+      expand: `to,from`,
     });
 
     return response as ILastMessages[];
