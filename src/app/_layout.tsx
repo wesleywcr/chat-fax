@@ -16,6 +16,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import { StatusBar, Text } from 'react-native';
+import FlashMessage from 'react-native-flash-message';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -59,6 +60,7 @@ export default function Root() {
       <AuthContextProvider>
         <Slot />
       </AuthContextProvider>
+      <FlashMessage position="top" />
     </QueryClientProvider>
   );
 }
