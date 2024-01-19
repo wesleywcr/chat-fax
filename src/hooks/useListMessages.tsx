@@ -1,25 +1,17 @@
-/* eslint-disable array-callback-return */
+import type { IDataMessages, IListMessages } from '@dto/messagesDTO';
 import { pb } from '@lib/pocketbase';
 import { useQuery } from '@tanstack/react-query';
 import groupBy from 'lodash/groupBy';
+import type { RecordModel } from 'pocketbase';
 
-type IDataMessages = {
-  title: string;
-  data: IListMessages[];
-};
-type IListMessages = {
-  id: string;
-  from: string;
-  to: string;
-  message: string;
-  status: number;
-  created_at: string;
-};
-export default function useListMessages() {
-  return useQuery<any[]>({
+import { useAuth } from './useAuth';
+
+export default function useListMessages(receiverId: string) {
+  const { user } = useAuth();
+
+  return useQuery({
     queryKey: ['messages'],
-    queryFn: () => fetchDataMessages(),
-    // enabled: !!receiver,
+    queryFn: () => fetchDataMessages(receiverId, user?.id as string),
   });
 }
 function convert(array: IListMessages[]) {
@@ -40,8 +32,21 @@ function convert(array: IListMessages[]) {
   });
   return data;
 }
+function messageFilterBetweenTwoUsers(
+  array: RecordModel[],
+  receiverId: string,
+  userId: string,
+) {
+  return array.filter((message) => {
+    const listMessagesUsers =
+      (message.from === receiverId && message.to === userId) ||
+      (message.from === userId && message.to === receiverId);
 
-async function fetchDataMessages() {
+    return listMessagesUsers;
+  });
+}
+
+async function fetchDataMessages(receiverId: string, userId: string) {
   try {
     let messages: any[] = [];
 
@@ -49,7 +54,9 @@ async function fetchDataMessages() {
       sort: 'created',
       expand: 'user',
     });
-    messages = response.items;
+
+    messages = messageFilterBetweenTwoUsers(response.items, receiverId, userId);
+
     const resultChat = messages.map((msg) => ({
       id: msg.id,
       from: msg.from,
@@ -58,8 +65,9 @@ async function fetchDataMessages() {
       status: msg.status,
       created_at: msg.created,
     }));
+
     const dataResult = convert(resultChat);
-    return dataResult as any;
+    return dataResult as IDataMessages[];
   } catch (error) {
     console.log(error);
   }
