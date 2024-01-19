@@ -86,7 +86,6 @@ export default function useReceiver() {
             refetch();
           });
 
-          console.log('subscribed');
           updateUserMessages(2);
           scrollToBottom();
         } catch (error: any) {

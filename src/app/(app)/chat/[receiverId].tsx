@@ -1,14 +1,8 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-plusplus */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable no-param-reassign */
-/* eslint-disable array-callback-return */
-
 import { BarInput } from '@components/BarInput';
 import { Header } from '@components/Header';
 import { Received } from '@components/messages/Received';
 import { Sent } from '@components/messages/Sent';
+import type { IDataMessages, IListMessages } from '@dto/messagesDTO';
 import { useAuth } from '@hooks/useAuth';
 import { FILE_URL } from '@storage/storageVariables';
 import { convertDateToDay, convertDateToHours } from '@utils/convertDate';
@@ -16,19 +10,6 @@ import { Controller } from 'react-hook-form';
 import { SectionList, Text, View } from 'react-native';
 
 import useReceiver from '../hook/useReceiver';
-
-type IDataMessages = {
-  title: string;
-  data: IListMessages[];
-};
-type IListMessages = {
-  id: string;
-  from: string;
-  to: string;
-  message: string;
-  status: number;
-  created_at: string;
-};
 
 export default function Chat() {
   const { user } = useAuth();
