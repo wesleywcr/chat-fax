@@ -25,10 +25,7 @@ export function Input({ errorMessage, type, onPressIcon, ...rest }: Props) {
             className="flex-row  items-center"
             onPress={onPressIcon}
           >
-            <Text>
-              📅
-              {/* <Feather name="calendar" size={24} color={colors.white} /> */}
-            </Text>
+            <Text>📅</Text>
           </TouchableOpacity>
         )}
       </View>

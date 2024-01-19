@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import type { ISignIn } from '@dto/authDTO';
 import type { UserDTO } from '@dto/userDTO';
 import { pb } from '@lib/pocketbase';
@@ -70,10 +69,11 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       setIsLoadingUserStorageData(false);
     }
   }
+
   async function getUserInfo(userID: string) {
     try {
       const response = await pb.collection('users').getOne(userID);
-      console.log('responseUSer', response);
+
       setIsLoadingUserStorageData(true);
       setUser(response as UserDTO);
       const { token } = await storageAuthTokenGet();
@@ -118,6 +118,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   }
   useEffect(() => {
     loadUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
