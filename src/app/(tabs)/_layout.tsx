@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 import Loading from '@components/Loading';
 import { Feather } from '@expo/vector-icons';
 import { useAuth } from '@hooks/useAuth';
