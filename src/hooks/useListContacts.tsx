@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-import type { IListContacts } from '@dto/userDTO';
+import type { IListContacts } from '@dto/contactsDTO';
 import { pb } from '@lib/pocketbase';
 import { useQuery } from '@tanstack/react-query';
 
@@ -10,11 +9,11 @@ export default function useListContacts() {
 
   return useQuery<IListContacts[] | undefined>({
     queryKey: ['receiver', user?.id],
-    queryFn: () => fetchDataContats(user?.id as string),
+    queryFn: () => fetchDataContacts(user?.id as string),
   });
 }
 
-async function fetchDataContats(id: string) {
+async function fetchDataContacts(id: string) {
   try {
     const response = await pb.collection('users').getFullList(200, {
       sort: 'created',
