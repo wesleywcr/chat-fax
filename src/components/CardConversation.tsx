@@ -36,11 +36,13 @@ export function CardConversation({
           </Text>
         </View>
       </View>
-      <View className="h-8 w-8 items-center justify-center rounded-md bg-blue-600">
-        <Text className="font-Poppins_500Medium text-sm text-white">
-          {unreadMessages}
-        </Text>
-      </View>
+      {unreadMessages > 0 && (
+        <View className="h-8 w-8 items-center justify-center rounded-md bg-blue-600">
+          <Text className="font-Poppins_500Medium text-sm text-white">
+            {unreadMessages}
+          </Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 }
