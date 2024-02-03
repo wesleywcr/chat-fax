@@ -19,7 +19,7 @@ export function BarInput({ onSend, characterCount, ...rest }: BarInputProps) {
         className="mx-4 h-10 w-64 flex-row  items-center
        rounded-full  bg-stone-950 px-4"
       >
-        <TextInput className=" w-48 text-white" {...rest} />
+        <TextInput testID="input-send" className=" w-48 text-white" {...rest} />
         <MaterialCommunityIcons
           name="emoticon-happy-outline"
           size={24}
@@ -32,6 +32,7 @@ export function BarInput({ onSend, characterCount, ...rest }: BarInputProps) {
         </TouchableOpacity>
       ) : (
         <MaterialCommunityIcons
+          testID="icon-microphone"
           name="microphone-outline"
           size={24}
           color={colors.stone[950]}
