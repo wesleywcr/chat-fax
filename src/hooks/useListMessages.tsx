@@ -9,10 +9,15 @@ import { useAuth } from './useAuth';
 export default function useListMessages(receiverId: string) {
   const { user } = useAuth();
 
-  return useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['messages'],
     queryFn: () => fetchDataMessages(receiverId, user?.id as string),
   });
+  return {
+    data,
+    isLoading,
+    refetch,
+  };
 }
 function convert(array: IListMessages[]) {
   const groupList = Object.values(
@@ -46,7 +51,7 @@ function messageFilterBetweenTwoUsers(
   });
 }
 
-async function fetchDataMessages(receiverId: string, userId: string) {
+export async function fetchDataMessages(receiverId: string, userId: string) {
   try {
     let messages: any[] = [];
 
