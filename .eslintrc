@@ -4,6 +4,9 @@
     "airbnb-base",
     "plugin:prettier/recommended"
   ],
+  "env": {
+    "jest": true
+  },
   "rules": {
     "prettier/prettier": [
       "error",
@@ -18,7 +21,9 @@
     {
       "files": [
         "**/*.ts",
-        "**/*.tsx"
+        "**/*.tsx",
+        "**/*.spec.ts",
+        "**/*.spec.tsx"
       ],
       "plugins": [
         "@typescript-eslint",
@@ -68,11 +73,24 @@
           "LabeledStatement",
           "WithStatement"
         ], // Overrides Airbnb configuration and enable no-restricted-syntax
-        "import/prefer-default-export": "off", // Named export is easier to refactor automatically
-        "simple-import-sort/imports": "error", // Import configuration for `eslint-plugin-simple-import-sort`
-        "simple-import-sort/exports": "error", // Export configuration for `eslint-plugin-simple-import-sort`
+        "import/prefer-default-export": "off",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
         "@typescript-eslint/no-unused-vars": "off",
         "unused-imports/no-unused-imports": "error",
+        "react/jsx-no-useless-fragment": "off",
+        "import/no-extraneous-dependencies": "off",
+        "react/no-unstable-nested-components": "off",
+        "consistent-return": "off",
+        "no-useless-catch": "off",
+        "react/jsx-no-constructed-context-values": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "no-console": "off",
+        "no-await-in-loop": "off",
+        "no-plusplus": "off",
+        "@typescript-eslint/no-unused-expressions ": "off",
+        "no-param-reassign ": "off",
+        "array-callback-return": "off",
         "unused-imports/no-unused-vars": [
           "error",
           {

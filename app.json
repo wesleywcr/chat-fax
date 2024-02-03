@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "chat-fax",
+    "scheme": "chat-fax",
     "slug": "chat-fax",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -26,7 +27,21 @@
       "package": "com.chatapp.fax"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    // "experiments": {
+    //   "typedRoutes": true,
+    //   "tsconfigPaths": true
+    // },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ]
   }
 }
