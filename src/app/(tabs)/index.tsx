@@ -55,7 +55,7 @@ export default function Home() {
             )}
           />
         </LinearGradient>
-        <View className="z-20 h-96 w-full flex-col rounded-t-3xl bg-stone-900">
+        <View className="z-20 h-72 w-full flex-col rounded-t-3xl bg-stone-900">
           <TextStyled className="mt-4 pl-6">Recent</TextStyled>
           <FlatList
             data={messagesFilters}

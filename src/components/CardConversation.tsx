@@ -37,7 +37,10 @@ export function CardConversation({
         </View>
       </View>
       {unreadMessages > 0 && (
-        <View className="h-8 w-8 items-center justify-center rounded-md bg-blue-600">
+        <View
+          testID="unreadMessages-indicator"
+          className="h-8 w-8 items-center justify-center rounded-md bg-blue-600"
+        >
           <Text className="font-Poppins_500Medium text-sm text-white">
             {unreadMessages}
           </Text>
