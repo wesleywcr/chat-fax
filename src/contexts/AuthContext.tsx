@@ -20,6 +20,7 @@ export type AuthContextProps = {
   signIn: (data: ISignIn) => Promise<void>;
   getUserInfo: (userID: string) => Promise<void>;
   signOut: () => Promise<void>;
+  deleteAccount: (userID: string) => Promise<void>;
 };
 
 type AuthContextProviderProps = {
@@ -98,6 +99,17 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       setIsLoadingUserStorageData(false);
     }
   }
+  async function deleteAccount(userID: string) {
+    try {
+      console.log('USer', userID);
+      const response = await pb.collection('users').delete(userID);
+      console.log('res', response);
+      signOut();
+    } catch (error) {
+      console.error('Error', error);
+      throw error;
+    }
+  }
   async function loadUserData() {
     try {
       setIsLoadingUserStorageData(true);
@@ -129,6 +141,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         signIn,
         getUserInfo,
         signOut,
+        deleteAccount,
       }}
     >
       {children}
