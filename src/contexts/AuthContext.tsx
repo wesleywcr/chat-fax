@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 import type { ISignIn } from '@dto/authDTO';
 import type { UserDTO } from '@dto/userDTO';
 import { pb } from '@lib/pocketbase';
@@ -101,9 +103,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   }
   async function deleteAccount(userID: string) {
     try {
-      console.log('USer', userID);
-      const response = await pb.collection('users').delete(userID);
-      console.log('res', response);
+      const messagesResult = await pb.collection('messages').getList(1, 1000, {
+        filters: { userID },
+      });
+
+      for (let i = 0; i < messagesResult.items.length; i++) {
+        console.log('MM2', messagesResult.items[i].id);
+        await pb.collection('messages').delete(messagesResult.items[i].id);
+      }
+      await pb.collection('users').delete(userID);
+
       signOut();
     } catch (error) {
       console.error('Error', error);

@@ -6,6 +6,7 @@ import { useAuth } from '@hooks/useAuth';
 import { FILE_URL } from '@storage/storageVariables';
 import { router } from 'expo-router';
 import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 
 export default function Profile() {
   const { signOut, user, deleteAccount } = useAuth();
@@ -22,7 +23,21 @@ export default function Profile() {
       {
         text: 'Yes',
         onPress: async () => {
-          deleteAccount(user.id);
+          try {
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+            await deleteAccount(user.id);
+            showMessage({
+              message: 'Success in deleting account!!',
+              description: '',
+              type: 'success',
+            });
+          } catch {
+            showMessage({
+              message: 'Error when deleting account!!',
+              description: 'Try again later',
+              type: 'danger',
+            });
+          }
         },
       },
     ]);
