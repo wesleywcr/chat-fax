@@ -8,7 +8,9 @@ type AvatarProps = {
 export function Avatar({ avatar }: AvatarProps) {
   return (
     <View>
-      {avatar?.slice(-3) === 'png' || avatar?.slice(-4) === 'jpeg' ? (
+      {avatar?.slice(-3) === 'png' ||
+      avatar?.slice(-4) === 'jpeg' ||
+      avatar?.slice(-3) === 'jpg' ? (
         <Image
           className="h-12 w-12 rounded-full"
           source={{
