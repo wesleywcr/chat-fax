@@ -61,7 +61,13 @@ export default function Chat() {
           sections={listMsg as IDataMessages[]}
           keyExtractor={(item) => String(item.id)}
           ListEmptyComponent={
-            isLoading ? <Text>Loading...</Text> : <Text>Error loading</Text>
+            isLoading ? (
+              <Text className="p-5 text-center font-Poppins_500Medium text-white">
+                Loading...
+              </Text>
+            ) : (
+              <></>
+            )
           }
           renderSectionHeader={({ section: { title } }) => (
             <View className="mt-5 self-center rounded-md bg-gray-700 px-1 py-2">

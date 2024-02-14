@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import type { ChatDTO } from '@dto/chatDTO';
 import { useAuth } from '@hooks/useAuth';
 import useListMessages from '@hooks/useListMessages';
@@ -11,12 +10,7 @@ import { useForm } from 'react-hook-form';
 import type { SectionList } from 'react-native';
 
 export default function useReceiver() {
-  const {
-    control,
-    reset,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm<ChatDTO>();
+  const { control, reset, handleSubmit } = useForm<ChatDTO>();
 
   const { user } = useAuth();
 
@@ -74,6 +68,7 @@ export default function useReceiver() {
     }
   };
   useEffect(() => {
+    updateUserMessages(2);
     scrollToBottom();
   }, [listMsg]);
 

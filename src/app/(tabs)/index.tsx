@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar } from '@components/Avatar';
 import { AvatarContact } from '@components/AvatarContact';
 import { CardConversation } from '@components/CardConversation';
@@ -8,15 +9,34 @@ import useListContacts from '@hooks/useListContacts';
 import useHome from '@screens/(app)/hook/useHome';
 import { FILE_URL } from '@storage/storageVariables';
 import { LinearGradient } from 'expo-linear-gradient';
-import { FlatList, TouchableOpacity, View } from 'react-native';
+import { useEffect } from 'react';
+import { FlatList, RefreshControl, TouchableOpacity, View } from 'react-native';
 
 export default function Home() {
   const { user } = useAuth();
 
-  const { data: listContacts } = useListContacts();
+  const {
+    data: listContacts,
+    refetch: refetchListContacts,
+    isLoading,
+  } = useListContacts();
 
-  const { handleOpenChat, handleOpenProfile, unReadMessages, messagesFilters } =
-    useHome();
+  const {
+    handleOpenChat,
+    handleOpenProfile,
+    unReadMessages,
+    messagesFilters,
+    refetchLastMessages,
+    isLoadingLastMessages,
+  } = useHome();
+
+  function handleRefresh() {
+    refetchLastMessages();
+    refetchListContacts();
+  }
+  useEffect(() => {
+    handleRefresh();
+  }, []);
 
   return (
     <View className="flex-1 flex-col  justify-between bg-black">
@@ -48,45 +68,58 @@ export default function Home() {
               <View className="mx-4" key={item.id}>
                 <AvatarContact
                   name={item.name}
-                  avatar={`${FILE_URL}/${item?.id}/${item?.avatar}`}
+                  avatar={`${FILE_URL}/${item.id}/${item?.avatar}`}
                   onPress={() => handleOpenChat(item.id)}
                 />
               </View>
             )}
+            refreshControl={
+              <RefreshControl
+                refreshing={isLoading || isLoadingLastMessages}
+                tintColor="#fff"
+                onRefresh={() => handleRefresh()}
+              />
+            }
           />
         </LinearGradient>
-        <View className="z-20 h-72 w-full flex-col rounded-t-3xl bg-stone-900">
+        <View className="z-20 h-96 w-full flex-col rounded-t-3xl bg-stone-900">
           <TextStyled className="mt-4 pl-6">Recent</TextStyled>
           <FlatList
             data={messagesFilters}
             keyExtractor={(item) => item.collectionId}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item: contact }) => (
-              <>
-                <CardConversation
-                  key={contact.id}
-                  name={
+              <CardConversation
+                key={contact.id}
+                name={
+                  contact.expand.to.id === user.id
+                    ? contact.expand.from.name
+                    : contact.expand.to.name
+                }
+                lastMessage={contact.text}
+                status={contact.expand.from.id === user.id ? contact.status : 0}
+                avatar_url={
+                  contact.expand.to.id === user.id
+                    ? `${FILE_URL}/${contact?.expand.from.id}/${contact?.expand.from.avatar}`
+                    : `${FILE_URL}/${contact?.expand.to.id}/${contact?.expand.to.avatar}`
+                }
+                unreadMessages={unReadMessages(contact.from)}
+                onPress={() =>
+                  handleOpenChat(
                     contact.expand.to.id === user.id
-                      ? contact.expand.from.name
-                      : contact.expand.to.name
-                  }
-                  lastMessage={contact.text}
-                  avatar_url={
-                    contact.expand.to.id === user.id
-                      ? `${FILE_URL}/${contact?.expand.from.id}/${contact?.expand.from.avatar}`
-                      : `${FILE_URL}/${contact?.expand.to.id}/${contact?.expand.to.avatar}`
-                  }
-                  unreadMessages={unReadMessages(contact.from)}
-                  onPress={() =>
-                    handleOpenChat(
-                      contact.expand.to.id === user.id
-                        ? contact.expand.from.id
-                        : contact.expand.to.id,
-                    )
-                  }
-                />
-              </>
+                      ? contact.expand.from.id
+                      : contact.expand.to.id,
+                  )
+                }
+              />
             )}
+            refreshControl={
+              <RefreshControl
+                refreshing={isLoading || isLoadingLastMessages}
+                tintColor="#fff"
+                onRefresh={() => handleRefresh()}
+              />
+            }
           />
         </View>
       </View>
