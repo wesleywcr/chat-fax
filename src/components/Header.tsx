@@ -9,7 +9,7 @@ type IHeaderProps = {
 
 export function Header({ name, status }: IHeaderProps) {
   return (
-    <View className="h-24 w-full  flex-row items-center justify-between px-4">
+    <View className="h-24  w-full flex-row items-center justify-between px-4">
       <TouchableOpacity onPress={() => router.replace('/')}>
         <Feather name="arrow-left" size={24} color="#fff" />
       </TouchableOpacity>

@@ -1,4 +1,6 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Text, TouchableOpacity, View } from 'react-native';
+import colors from 'tailwindcss/colors';
 
 import { Avatar } from './Avatar';
 
@@ -6,12 +8,14 @@ type ChatProps = {
   name: string;
   lastMessage: string;
   unreadMessages: number;
+  status: number;
   onPress: () => void;
   avatar_url?: string;
 };
 export function CardConversation({
   name,
   lastMessage,
+  status,
   unreadMessages,
   avatar_url,
   onPress,
@@ -31,9 +35,23 @@ export function CardConversation({
           >
             {name}
           </Text>
-          <Text className="text-left font-Poppins_500Medium text-xs text-white">
-            {lastMessage}
-          </Text>
+          <View className="flex-row items-center ">
+            {status === 1 && (
+              <Ionicons name="checkmark" size={21} color={colors.gray['100']} />
+            )}
+            {status === 2 && (
+              <Ionicons
+                name="checkmark-done"
+                size={21}
+                color={colors.green['800']}
+              />
+            )}
+            {status === 0 && <></>}
+
+            <Text className="text-left font-Poppins_500Medium text-xs text-white">
+              {lastMessage}
+            </Text>
+          </View>
         </View>
       </View>
       {unreadMessages > 0 && (
