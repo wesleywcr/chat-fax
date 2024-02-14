@@ -4,7 +4,11 @@ import useLastMessages from '@hooks/useLastMessages';
 import { router } from 'expo-router';
 
 export default function useHome() {
-  const { data: lastMessages } = useLastMessages();
+  const {
+    data: lastMessages,
+    refetch: refetchLastMessages,
+    isLoading: isLoadingLastMessages,
+  } = useLastMessages();
   const { user } = useAuth();
 
   function handleOpenChat(id: string) {
@@ -56,5 +60,7 @@ export default function useHome() {
     handleOpenProfile,
     unReadMessages,
     messagesFilters,
+    refetchLastMessages,
+    isLoadingLastMessages,
   };
 }
