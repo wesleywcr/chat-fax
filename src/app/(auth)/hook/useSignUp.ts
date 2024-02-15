@@ -45,7 +45,6 @@ export default function useSignUp() {
       router.push('/(tabs)/');
     } catch (err: any) {
       console.error(err.originalError);
-      // console.error(err);
     }
   }
   const handleSelectedDate = (
